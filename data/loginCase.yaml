@@ -1,0 +1,36 @@
+# 注释 登录接口
+-
+  url: /login
+  method: POST
+- #test_01用例
+  detail: 账号与密码都正确
+  data:
+    appname: "LungScr"
+    password: "LungScr"
+  resp:
+    code: 200
+    message: True
+- #test_02用例
+  detail: 账号没有，密码正确
+  data:
+    appname: ""
+    password: "LungScr"
+  resp:
+    code: 400
+    message: False
+- #test_03
+  detail: 账号有，密码没有
+  data:
+    appname: "LungScr"
+    password: ""
+  resp:
+    code: 400
+    message: False
+- # test_04
+  detail: 账号有，密码错误
+  data:
+    appname: "test"
+    password: "LungScr"
+  resp:
+    code: 400
+    message: True
