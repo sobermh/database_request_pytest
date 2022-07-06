@@ -1,0 +1,5 @@
+#按项目代号查找样本信息
+- #test_01 正确查找
+  method: "get"
+  url: "/project/sample/YSA01"
+  success : True

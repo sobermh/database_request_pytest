@@ -1,0 +1,25 @@
+#按oss的id查询oss信息
+- #test_01 id,密码都正确
+  method: 'get'
+  url: /oss/1
+  pwd: "66d4580e-6242-4c4f-8397-df2dcf27631d"
+  success: True
+  assert_data: "whsds"
+- #test_02 id错误
+  method: 'get'
+  url: '/oss/2'
+  pwd: "66d4580e-6242-4c4f-8397-df2dcf27631d"
+  success: False
+  assert_data: "whsds"
+- #test_03 pwd错误
+  method: 'get'
+  url: '/oss/1'
+  pwd: "123456"
+  success: False
+  assert_data: "whsds"
+- #test_04 id，密码都错误
+  method: 'get'
+  url: '/oss/2'
+  pwd: "df2dcf27631d"
+  success: False
+  assert_data: "whsds"

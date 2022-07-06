@@ -62,6 +62,7 @@ class TestLogin:
     #测试方法
     @pytest.mark.parametrize('inBody,expData',get_yaml_data('../data/loginCase.yaml'))
     def test_login(self,inBody,expData):
+        """登录授权"""
         #调用业务代码
         res = Login().login(inBody, False)
         print(res)
@@ -70,9 +71,7 @@ class TestLogin:
 
 
 if __name__ == '__main__':
-    pytest.main(["login_test.py",'-s',"--alluredir","../report/tmp" "--clean"]) #-s打印 输出
-    #使用 allure 产生报告
-    os.system("allure serve ../report/tmp")
+    pytest.main(['test_login.py', '-sv'])
     """
      1- 生成报告所需的文件
      2- 使用一些工具打开可视化报告

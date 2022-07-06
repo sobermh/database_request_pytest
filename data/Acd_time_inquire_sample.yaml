@@ -1,0 +1,15 @@
+#1按时间段查询样本
+- #test_01 正确查找
+  method: "get"
+  url: "/sample"
+  request:
+    begin_date: 2021-12-27
+    end_date: 2021-12-29
+  success: True
+- #test_01 不存在的时间查找
+  method: "get"
+  url: "/sample"
+  request:
+    begin_date: 1998-11-04
+    end_date: 1999-11-04
+  success: True

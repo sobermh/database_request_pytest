@@ -1,6 +1,6 @@
 """
 @author:maohui
-@time:2022/6/30 13:22
+@time:2022/7/5 17:45
   　　　　　　　 ┏┓    ┏┓+ +
   　　　　　　　┏┛┻━━━━┛┻┓ + +
   　　　　　　　┃        ┃ 　 
@@ -23,39 +23,25 @@
   　　　　　　　   ┃┫┫     ┃┫┫
   　　　　　　　   ┗┻┛     ┗┻┛+ + + +
 """
+import requests
 
-#需要按照第三方库 终端 pip install pyYaml
-import yaml
+import pytest
 
-def get_yaml_data(fileDir):
+from configs.config import TOKEN, HOST
+from tools.httpclient import HttpClient
+from tools.yamlControl import get_yaml_data1
 
-    resList=[] #存放结果[(请求1，期望响应1)，(请求2，期望响应2)]
+class TestOssMsg:
+    #按oss的id查询oss信息
+    @pytest.mark.parametrize('data',get_yaml_data1('../data/Ossid_inquire_oss_msg.yaml'))
+    def test_ossId_inquire_oss_msg(self,data):
+        """按oss的id查询oss信息"""
+        request_data={"pwd":{data["pwd"]}}
+        response = HttpClient().send_request(method='get', url=f'{HOST}/{data["url"]}', param_type='application/json',
+                                             data=request_data, headers={"Authorization": f'Bearer<{TOKEN}>'})
+        assert response.json()['success'] == data["success"]
+        print(response.json())
 
-    #1- 读取文件操作-----从磁盘读取到内存里
-    file = open(fileDir,'r',encoding="utf-8")
-    #2- 使用yaml方法获取数据
-    res=yaml.load(file,Loader=yaml.FullLoader)
-    file.close()
-    #具体返回什么类型，根据需求
 
-    info=res[0] #自己封装基类可以使用
-    del res[0]
-    for one in res:
-        resList.append((one['data'],one['resp']))
-    return resList #存放结果[(请求1，期望响应1)，(请求2，期望响应2)]
-
-def get_yaml_data1(fileDir):
-
-    resList=[] #存放结果[(请求1，期望响应1)，(请求2，期望响应2)]
-
-    #1- 读取文件操作-----从磁盘读取到内存里
-    file = open(fileDir,'r',encoding="utf-8")
-    #2- 使用yaml方法获取数据
-    res=yaml.load(file,Loader=yaml.FullLoader)
-    print(res)
-    file.close()
-    return res
 if __name__ == '__main__':
-    res=get_yaml_data1('../data/Acd_time_inquire_sample.yaml')
-    print(res[0]['request'])
-
+    pytest.main(['test_oss_msg.py','-sv'])

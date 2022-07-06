@@ -1,0 +1,17 @@
+#1按文件id查询项目代号
+- #test_01 正确修改
+  method: "post"
+  url: "/sample/file/projects"
+  request:
+    sys_id: 1
+    fid: 1084
+    pcodes: ["YSA01"]
+  success: True
+- #test_02 不存在的fileid
+  method: "post"
+  url: "/sample/file/projects"
+  request:
+    sys_id: 1
+    fid: 1094
+    pcodes: ["YSA01"]
+  success: False

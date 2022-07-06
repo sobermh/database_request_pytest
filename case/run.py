@@ -28,10 +28,10 @@ import os
 import pytest
 # """
 # 运行所有：pytest.main()
-# 指定模块：pytest.main(['-vs','login_test.py'])
+# 指定模块：pytest.main(['-vs','test_login.py'])
 # 指定目录: pytest.main(['-vs','/case'])
 # 通过nodeid指定用例运行：nodeid由模块名，分隔符，类名，方法名，函数名组成
-#     pytest.main(['-vs','./case/login_test.py::TestLogin::test_login'])
+#     pytest.main(['-vs','./case/test_login.py::TestLogin::test_login'])
 # 多线程： pytest.main(['-vs','/case'，'-n=2'])
 # 失败用例再重跑2次： pytest.main(['-vs','/case'，'--reruns=2'])
 #
@@ -40,7 +40,7 @@ import pytest
 # -v:显示更详细的信息
 # -vs:这两个参数可以一起用
 # -n :支持多线程或者分布式运行测试用例。
-#     如：pytest -vs  ./login_test.py -n -2
+#     如：pytest -vs  ./test_login.py -n -2
 # -x： 一个测试报错，那么测试停止
 # --maxfail=2 出现两个用例失败就停止
 # -k： 根据测试用例的部分字符串指定测试用例 -k “ao”
@@ -78,5 +78,6 @@ import pytest
 # @pytest.mark.skip(reason="")
 
 if __name__ == '__main__':
-    pytest.main(['-vs','login_test.py',"--alluredir","../report/tmp","--clean"])
+    # pytest.main(['-vs','test_customer_msg.py',"--alluredir","../report/tmp","--clean-alluredir"])
+    pytest.main(['-vs', "--alluredir", "../report/tmp", "--clean-alluredir"])
     os.system("allure serve ../report/tmp")

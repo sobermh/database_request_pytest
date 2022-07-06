@@ -1,0 +1,5 @@
+#按文件id删除文件
+- #test_01 正确查找
+  method: "DELETE"
+  url: "/sample/file"
+  success : True

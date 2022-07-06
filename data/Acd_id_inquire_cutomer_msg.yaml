@@ -1,0 +1,17 @@
+# 按客户ID查询客户信息
+- #test_01 id存在
+  common: &common
+    method: "get"
+    param_type: application/json
+  url: /customer/977
+  assert_data: 977
+- #test_02 id不存在
+  common:
+    <<: *common
+  url: /customer/1
+  assert_data: 1
+- #test_03 id不在url后面
+  common:
+    <<: *common
+  url: /customer
+  assert_data: None

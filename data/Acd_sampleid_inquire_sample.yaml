@@ -1,0 +1,9 @@
+#按样本id查询样本
+- #test_01 正常查询
+  method: "get"
+  url: "sample/1555"
+  success : True
+- #test_02 不存在的样本id查询
+  method: "get"
+  url: "sample/999999999999999999999999999"
+  success : False
