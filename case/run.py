@@ -80,4 +80,4 @@ import pytest
 if __name__ == '__main__':
     # pytest.main(['-vs','test_customer_msg.py',"--alluredir","../report/tmp","--clean-alluredir"])
     pytest.main(['-vs', "--alluredir", "../report/tmp", "--clean-alluredir"])
-    os.system("allure serve ../report/tmp")
+    # os.system("allure serve ../report/tmp")
